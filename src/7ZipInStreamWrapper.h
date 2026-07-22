@@ -13,10 +13,10 @@ public:
 public:
     Z7_COM_UNKNOWN_IMP_2(IInStream, IStreamGetSize)
 
-    STDMETHOD(Read)(void *data, UInt32 size, UInt32 *processedSize) throw();
-    STDMETHOD(Seek)(Int64 offset, UInt32 seekOrigin, UInt64 *newPosition) throw();
+    STDMETHOD(Read)(void *data, UInt32 size, UInt32 *processedSize) throw() override;
+    STDMETHOD(Seek)(Int64 offset, UInt32 seekOrigin, UInt64 *newPosition) throw() override;
 
-    STDMETHOD(GetSize)(UInt64 *size) throw();
+    STDMETHOD(GetSize)(UInt64 *size) throw() override;
 
 private:
     C7ZipInStream * m_pInStream;

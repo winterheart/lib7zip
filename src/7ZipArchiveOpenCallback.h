@@ -19,17 +19,17 @@ public IArchiveOpenCallback,
 					);
 
 	// IArchiveOpenCallback
-	STDMETHOD(SetTotal)(const UInt64 *files, const UInt64 *bytes) throw();
-	STDMETHOD(SetCompleted)(const UInt64 *files, const UInt64 *bytes) throw();
+	STDMETHOD(SetTotal)(const UInt64 *files, const UInt64 *bytes) throw() override;
+	STDMETHOD(SetCompleted)(const UInt64 *files, const UInt64 *bytes) throw() override;
 
 	// IArchiveOpenVolumeCallback
-	STDMETHOD(GetProperty)(PROPID propID, PROPVARIANT *value) throw();
-	STDMETHOD(GetStream)(const wchar_t *name, IInStream **inStream) throw();
+	STDMETHOD(GetProperty)(PROPID propID, PROPVARIANT *value) throw() override;
+	STDMETHOD(GetStream)(const wchar_t *name, IInStream **inStream) throw() override;
 
 	// ICryptoGetTextPassword
-	STDMETHOD(CryptoGetTextPassword)(BSTR *password) throw();
+	STDMETHOD(CryptoGetTextPassword)(BSTR *password) throw() override;
 
-	STDMETHOD(SetSubArchiveName(const wchar_t *name)) throw()		{
+	STDMETHOD(SetSubArchiveName(const wchar_t *name)) throw() override {
 		_subArchiveMode = true;
 		_subArchiveName = name;
 		TotalSize = 0;

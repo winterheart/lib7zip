@@ -14,8 +14,29 @@
 #include <string>
 #include <vector>
 
-// Include 7zip types
-#include "CPP/Common/MyTypes.h"
+// Copy from "CPP/Common/MyTypes.h"
+#ifdef Z7_DECL_Int64_AS_long
+
+typedef long Int64;
+typedef unsigned long UInt64;
+
+#else
+
+#if (defined(_MSC_VER) || defined(__BORLANDC__)) && !defined(__clang__)
+typedef __int64 Int64;
+typedef unsigned __int64 UInt64;
+#else
+#if defined(__clang__) || defined(__GNUC__)
+#include <cstdint>
+typedef int64_t Int64;
+typedef uint64_t UInt64;
+#else
+typedef long long int Int64;
+typedef unsigned long long int UInt64;
+#endif
+#endif
+
+#endif
 
 #ifndef _WIN32
 #ifndef __int64
