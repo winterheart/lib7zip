@@ -29,7 +29,7 @@ ar rcs lib7zip.a *.o
 
 - **7-Zip 25.0 Source**: Included as git submodule at `third_party/7zip/`
 - **C++ Compiler**: GCC 8+ or Clang 10+ with C++14 support  
-- **Build Tools**: CMake 3.5+ for CMake method, git for submodule management
+- **Build Tools**: CMake 3.24+ for CMake method, git for submodule management
 - **System Libraries**: pthread, dl (standard on most Linux systems)
 
 ## 🔧 Build Instructions
