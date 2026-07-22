@@ -90,7 +90,7 @@ public:
 	{
 		wprintf(L"Seek\n");
 		int result = fseek(m_pFile, (long)offset, seekOrigin);
-		wprintf(L"Seek:%ld %ld\n", offset, result);
+		wprintf(L"Seek:%lld %d\n", offset, result);
 		if (!result)
 		{
 			if (newPosition)
@@ -149,7 +149,7 @@ public:
 			fclose(m_pFile);
 		m_pFile = NULL;
 		string f = narrow(volumeName);
-		wprintf(L"narrow volume:%s\n", f.c_str());
+		wprintf(L"narrow volume:%hs\n", f.c_str());
 
 		m_pFile = fopen(f.c_str(), "rb");
 
@@ -254,7 +254,7 @@ public:
 
 	virtual int SetSize(UInt64 size)
 	{
-		wprintf(L"SetFileSize:%ld\n", size);
+		wprintf(L"SetFileSize:%lld\n", size);
 		return 0;
 	}
 };

@@ -18,7 +18,7 @@ public:
 		m_strFileExt(L"zip")
 	{
 
-		wprintf(L"fileName.c_str(): %s\n", fileName.c_str());
+		wprintf(L"fileName.c_str(): %hs\n", fileName.c_str());
 		m_pFile = fopen(fileName.c_str(), "rb");
 		if (m_pFile) {
 			fseek(m_pFile, 0, SEEK_END);
@@ -44,7 +44,7 @@ public:
 			wprintf(L"Ext:%ls\n", m_strFileExt.c_str());
 		}
 		else {
-			wprintf(L"fileName.c_str(): %s cant open\n", fileName.c_str());
+			wprintf(L"fileName.c_str(): %hs cant open\n", fileName.c_str());
 		}
 	}
 
@@ -183,7 +183,7 @@ public:
 
 	virtual int SetSize(UInt64 size)
 	{
-		wprintf(L"SetFileSize:%ld\n", size);
+		wprintf(L"SetFileSize:%lld\n", size);
 		return 0;
 	}
 };
@@ -276,7 +276,7 @@ int main(int argc, char * argv[])
 					wprintf(L"\n\nGetProperty:%d %ls\n", (int)index,
 							index_names[(int)index]);
 
-					wprintf(L"UInt64 result:%ls val=%ld\n",
+					wprintf(L"UInt64 result:%ls val=%lld\n",
 							result ? L"true" : L"false",
 							val);
 
@@ -294,7 +294,7 @@ int main(int argc, char * argv[])
 
 					result = pArchiveItem->GetFileTimeProperty(index, val);
 
-					wprintf(L"FileTime result:%ls val=%ld\n",
+					wprintf(L"FileTime result:%ls val=%lld\n",
 							result ? L"true" : L"false",
 							val);
 				}
