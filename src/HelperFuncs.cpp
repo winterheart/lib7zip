@@ -9,12 +9,12 @@
 
 #if !defined(_WIN32) && !defined(_OS2)
 #include "CPP/Common/StdAfx.h"
-#include "CPP/Windows/Defs.h"
 #include "CPP/7zip/MyVersion.h"
 #endif
 
 #include "C/7zVersion.h"
 #include "CPP/7zip/Archive/IArchive.h"
+#include "CPP/Windows/Defs.h"
 #include "CPP/Windows/PropVariant.h"
 #include "CPP/Common/MyCom.h"
 #include "CPP/7zip/ICoder.h"
