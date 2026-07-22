@@ -126,14 +126,13 @@ export LD_LIBRARY_PATH=./build/src:$LD_LIBRARY_PATH
 
 ## 🎯 Project Status
 
-| Component | Status | Notes |
-|-----------|--------|-------|
-| **Core Library** | ✅ **Ready** | Fully functional with 7-Zip 25.0 |
-| **Static Library** | ✅ **Ready** | Successfully builds with CMake |
-| **Shared Library** | ✅ **Ready** | Optional, enable with -DBUILD_SHARED_LIB=ON |
-| **COM Interfaces** | ✅ **Ready** | All interfaces updated for 7-Zip 25.0 |
-| **API Compatibility** | ✅ **Ready** | Backward compatible API maintained |
-| **Test Programs** | ⚠️ **Partial** | Core library works, tests need minor updates |
+| Component                 | Status         | Notes                                        |
+|---------------------------|----------------|----------------------------------------------|
+| **Core Library**          | ✅ **Ready**    | Fully functional with 7-Zip 25.0             |
+| **Shared/Static Library** | ✅ **Ready**    | Build with -DLIB7ZIP_BUILD_SHARED_LIB=ON/OFF |
+| **COM Interfaces**        | ✅ **Ready**    | All interfaces updated for 7-Zip 25.0        |
+| **API Compatibility**     | ✅ **Ready**    | Backward compatible API maintained           |
+| **Test Programs**         | ⚠️ **Partial** | Core library works, tests need minor updates |
 
 ## 🔍 Verification
 
