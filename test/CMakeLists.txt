@@ -29,6 +29,10 @@ FOREACH (f ${test_src})
     "${SEVENZIP_INCLUDE_PATH}"
   )
 
+  TARGET_COMPILE_DEFINITIONS(${test_target_name} PRIVATE
+    $<$<CXX_COMPILER_ID:MSVC>:UNICODE _UNICODE>
+  )
+
   TARGET_LINK_LIBRARIES(${test_target_name}
     lib7zip
     ${CMAKE_DL_LIBS}
