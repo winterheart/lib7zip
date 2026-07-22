@@ -250,10 +250,18 @@ int main(int argc, char * argv[])
 	}
 
 	C7ZipArchive * pArchive = NULL;
+#ifdef _WIN32
+	// Convert from TCHAR*
+	int sizeNeed = WideCharToMultiByte(CP_UTF8, 0, argv[1], -1, NULL, 0, NULL, NULL);
+	std::string input(sizeNeed - 1, 0);
+	WideCharToMultiByte(CP_UTF8, 0, argv[1], -1, &input[0], sizeNeed, NULL, NULL);
+#else
+	std::string input = argv[1];
+#endif
 
-	TestInStream stream(argv[1]);
+	TestInStream stream(input);
 	TestOutStream oStream("TestResult.txt");
-        if (lib.OpenArchive(&stream, &pArchive, true)) {
+    if (lib.OpenArchive(&stream, &pArchive, true)) {
 		unsigned int numItems = 0;
 
 		pArchive->GetItemCount(&numItems);
@@ -307,9 +315,8 @@ int main(int argc, char * argv[])
                 pArchive->Extract(pArchiveItem, &oStream);
 			} //if
 		}//for
-	}
-	else {
-		wprintf(L"open archive %hs fail\n", argv[1]);
+	} else {
+		wprintf(L"open archive %hs fail\n", input.c_str());
 	}
 
 	if (pArchive != NULL)
