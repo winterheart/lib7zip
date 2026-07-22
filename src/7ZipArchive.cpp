@@ -34,21 +34,21 @@ public:
 public:
 	Z7_COM_UNKNOWN_IMP_1(IOutStream)
 
-	STDMETHOD(Seek)(Int64 offset, UInt32 seekOrigin, UInt64 *newPosition) throw()
+	STDMETHOD(Seek)(Int64 offset, UInt32 seekOrigin, UInt64 *newPosition) throw() override
 	{
 		return m_pOutStream->Seek(offset, seekOrigin, newPosition);
 	}
 
 #if MY_VER_MAJOR > 9 || (MY_VER_MAJOR == 9 && MY_VER_MINOR>=20)
-	STDMETHOD(SetSize)(UInt64 newSize) throw()
+	STDMETHOD(SetSize)(UInt64 newSize) throw() override
 #else
-	STDMETHOD(SetSize)(Int64 newSize) throw()
+	STDMETHOD(SetSize)(Int64 newSize) throw() override
 #endif
 	{
 		return m_pOutStream->SetSize(newSize);
 	}
 
-	STDMETHOD(Write)(const void *data, UInt32 size, UInt32 *processedSize) throw()
+	STDMETHOD(Write)(const void *data, UInt32 size, UInt32 *processedSize) throw() override
 	{
 		return m_pOutStream->Write(data, size, processedSize);
 	}
@@ -67,16 +67,16 @@ public:
 	Z7_COM_UNKNOWN_IMP_1(ICryptoGetTextPassword)
 
 	// IProgress
-	STDMETHOD(SetTotal)(UInt64 size) throw();
-	STDMETHOD(SetCompleted)(const UInt64 *completeValue) throw();
+	STDMETHOD(SetTotal)(UInt64 size) throw() override;
+	STDMETHOD(SetCompleted)(const UInt64 *completeValue) throw() override;
 
 	// IArchiveExtractCallback
-	STDMETHOD(GetStream)(UInt32 index, ISequentialOutStream **outStream, Int32 askExtractMode) throw();
-	STDMETHOD(PrepareOperation)(Int32 askExtractMode) throw();
-	STDMETHOD(SetOperationResult)(Int32 resultEOperationResult) throw();
+	STDMETHOD(GetStream)(UInt32 index, ISequentialOutStream **outStream, Int32 askExtractMode) throw() override;
+	STDMETHOD(PrepareOperation)(Int32 askExtractMode) throw() override;
+	STDMETHOD(SetOperationResult)(Int32 resultEOperationResult) throw() override;
 
 	// ICryptoGetTextPassword
-	STDMETHOD(CryptoGetTextPassword)(BSTR *aPassword) throw();
+	STDMETHOD(CryptoGetTextPassword)(BSTR *aPassword) throw() override;
 
 	virtual bool SetFileSymLinkAttrib() {
 		return false;

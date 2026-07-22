@@ -12,13 +12,13 @@ public:
     Z7_COM_UNKNOWN_IMP_1(ICompressCodecsInfo)
 
 #if MY_VER_MAJOR >= 15
-    STDMETHOD(GetNumMethods)(UInt32 *numMethods) throw();
+    STDMETHOD(GetNumMethods)(UInt32 *numMethods) throw() override;
 #else    
-    STDMETHOD(GetNumberOfMethods)(UInt32 *numMethods) throw();
+    STDMETHOD(GetNumberOfMethods)(UInt32 *numMethods) throw() override;
 #endif	
-    STDMETHOD(GetProperty)(UInt32 index, PROPID propID, PROPVARIANT *value) throw();
-    STDMETHOD(CreateDecoder)(UInt32 index, const GUID *interfaceID, void **coder) throw();
-    STDMETHOD(CreateEncoder)(UInt32 index, const GUID *interfaceID, void **coder) throw();
+    STDMETHOD(GetProperty)(UInt32 index, PROPID propID, PROPVARIANT *value) throw() override;
+    STDMETHOD(CreateDecoder)(UInt32 index, const GUID *interfaceID, void **coder) throw() override;
+    STDMETHOD(CreateEncoder)(UInt32 index, const GUID *interfaceID, void **coder) throw() override;
 
     void InitData();
 private:
