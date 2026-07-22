@@ -11,9 +11,9 @@ on:
       - master
 
 jobs:
-  build-linux:
+  build-all:
     runs-on: ${{ matrix.config.os }}
-    name: 'Build (${{ matrix.config.cxx }}, ${{ matrix.type }}, SHARED=${{ matrix.build_shared }})'
+    name: 'Build on ${{ matrix.config.os }} (${{ matrix.config.cxx }}, ${{ matrix.type }}, SHARED=${{ matrix.build_shared }})'
     strategy:
       fail-fast: false
       matrix:
@@ -27,9 +27,12 @@ jobs:
         build_shared:
           - "ON"
           - "OFF"
+        exclude:
+          - config: { os: "windows-latest", cxx: "cl" }
+            build_shared: "ON"
     steps:
       - name: "Checkout"
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           submodules: 'true'
 

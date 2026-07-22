@@ -8,7 +8,7 @@ lib7zip is a C++ wrapper library for accessing 7-Zip archives programmatically. 
 # Method 1: CMake with Submodule (Recommended)
 git submodule update --init --recursive
 mkdir build && cd build
-cmake .. -DBUILD_SHARED_LIB=OFF
+cmake ..
 make -j4
 
 # Method 2: Direct compilation (Advanced users)
@@ -46,7 +46,7 @@ git submodule update --init --recursive
 mkdir -p build && cd build
 
 # Configure (7-Zip source auto-detected from submodule)
-cmake .. -DBUILD_SHARED_LIB=OFF
+cmake ..
 
 # Build library
 make -j4
@@ -129,7 +129,7 @@ export LD_LIBRARY_PATH=./build/src:$LD_LIBRARY_PATH
 | Component                 | Status         | Notes                                        |
 |---------------------------|----------------|----------------------------------------------|
 | **Core Library**          | ✅ **Ready**    | Fully functional with 7-Zip 25.0             |
-| **Shared/Static Library** | ✅ **Ready**    | Build with -DLIB7ZIP_BUILD_SHARED_LIB=ON/OFF |
+| **Shared/Static Library** | ⚠️ **Partial** | Windows supports only static linking         |
 | **COM Interfaces**        | ✅ **Ready**    | All interfaces updated for 7-Zip 25.0        |
 | **API Compatibility**     | ✅ **Ready**    | Backward compatible API maintained           |
 | **Test Programs**         | ⚠️ **Partial** | Core library works, tests need minor updates |

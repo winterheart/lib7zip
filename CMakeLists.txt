@@ -24,7 +24,7 @@ IF (NOT CMAKE_BUILD_TYPE)
 ENDIF ()
 
 SET(SEVENZIP_SOURCE_DIR "${PROJECT_SOURCE_DIR}/third_party/7zip" CACHE STRING "Location of 7zip sources")
-OPTION(LIB7ZIP_BUILD_SHARED_LIB "Build shared library" OFF)
+OPTION(LIB7ZIP_BUILD_SHARED_LIB "Build shared library (only for *nix)" OFF)
 OPTION(LIB7ZIP_ENABLE_TESTING "Enable testing" ${PROJECT_IS_TOP_LEVEL})
 OPTION(LIB7ZIP_WARNING_AS_ERROR "Threat all compiler warnings as errors" ${PROJECT_IS_TOP_LEVEL})
 
