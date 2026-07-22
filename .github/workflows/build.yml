@@ -1,0 +1,53 @@
+name: build
+
+on:
+  push:
+    tags:
+      - 'v*'
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  build-linux:
+    runs-on: ${{ matrix.config.os }}
+    name: 'Build (${{ matrix.config.cxx }}, ${{ matrix.type }}, SHARED=${{ matrix.build_shared }})'
+    strategy:
+      fail-fast: false
+      matrix:
+        config:
+          - { os: "ubuntu-latest", cxx: "g++" }
+          - { os: "ubuntu-latest", cxx: "clang++" }
+          - { os: "windows-latest", cxx: "cl" }
+        type:
+          - "Debug"
+          - "Release"
+        build_shared:
+          - "ON"
+          - "OFF"
+    steps:
+      - name: "Checkout"
+        uses: actions/checkout@v4
+        with:
+          submodules: 'true'
+
+      - name: "Prepare Windows environment"
+        uses: ilammy/msvc-dev-cmd@v1
+        if: ${{ matrix.config.os == 'windows-latest' }}
+        with:
+          arch: win64
+
+      - name: "Install dependencies"
+        if: ${{ matrix.config.os == 'ubuntu-latest' }}
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y 7zip
+
+      - name: "Build with ${{ matrix.config.cxx }}"
+        env:
+          CXX: ${{ matrix.config.cxx }}
+        run: |
+          cmake -B build -G Ninja -DCMAKE_BUILD_TYPE=${{ matrix.type }} -DLIB7ZIP_BUILD_SHARED_LIB=${{ matrix.build_shared }}
+          cmake --build build -j2
